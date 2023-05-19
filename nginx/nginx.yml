@@ -1,0 +1,27 @@
+---
+- name: Install and configure Nginx web server
+  hosts: all
+  become: true
+  tasks:
+    - name: Install Nginx package
+      yum:
+        name: nginx
+        state: present
+
+    - name: Enable Nginx service
+      systemd:
+        name: nginx
+        enabled: yes
+        state: started
+
+    - name: Deploy sample.txt to Nginx document root
+      copy:
+        src: /path/to/sample.txt
+        dest: /var/www/html/sample.txt
+
+    - name: Allow HTTP traffic through firewall
+      firewalld:
+        service: http
+        permanent: yes
+        state: enabled
+
