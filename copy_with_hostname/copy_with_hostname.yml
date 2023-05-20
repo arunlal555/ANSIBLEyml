@@ -1,0 +1,9 @@
+  1 ---
+  2 - name: Example task with facts and copy module (using content)
+  3   hosts: all
+  4   tasks:
+  5     - name: Copy file using fact variabel (with content)
+  6       copy:
+  7         content: My host name is {{ansible_facts.hostname}}
+  8         dest: /mnt/hostname.txt
+  9 ...
