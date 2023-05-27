@@ -1,0 +1,17 @@
+---
+- name: Create User Accounts
+  hosts: all
+  vars_files:
+    - users.yml
+    - passwords.yml
+
+  tasks:
+    - name: Create User Accounts
+      user:
+        name: "{{username}}"
+        uid: "{{id}}"
+        group: wheel
+        shell: /bin/bash
+        comment: Ansible
+        password: "{{password}}"
+...
